@@ -6,27 +6,17 @@ import {
     MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-
-
-// export interface State {
-
-// }
-
-// export const reducers: ActionReducerMap<State> = {
-
-// };
-
-
-// export const metaReducers: MetaReducer<State>[] = !environment.production ? [debug] : [];
-
-
+import { demoReducers } from './demo.reducer';
+import * as fromRouter from '@ngrx/router-store';
 
 import { routerReducer } from '@ngrx/router-store';
-import { IAppState } from './../../shared-service/models';
+import { IAppState, IRouterState } from './../../shared-service/models';
 import { EAppActionTypes } from './../actions';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
     router: routerReducer,
+    demo: demoReducers
 };
 
 // console.log all actions
@@ -54,5 +44,8 @@ export function reloadStateMeta(reducer: ActionReducer<any>): ActionReducer<any>
     };
 }
 
-export const metaReducers: MetaReducer<IAppState>[] = !environment.production ? [debug] : [];
+console.log(environment.production);
+
+export const metaReducers: MetaReducer<IAppState>[] = !environment.production ? [debug] : [debug];
+
 

@@ -1,2 +1,8 @@
 <p>demo works!</p>
 <button (click)="dispatchAction()">Dispatch Action</button>
+
+<ul>
+  <li *ngFor="let item of items$ | async; let i = index">
+    {{ i }} {{ item.a }}
+  </li>
+</ul>

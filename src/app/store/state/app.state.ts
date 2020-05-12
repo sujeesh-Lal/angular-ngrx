@@ -1,4 +1,5 @@
 import { IAppState, IRouterState } from './../../shared-service/models';
+import { initialDemoState, IDemoState } from './demo.state';
 import { RouterReducerState } from '@ngrx/router-store';
 
 export const InitAppRouteState: IRouterState = {
@@ -14,6 +15,7 @@ export const InitAppRouteReducerState: RouterReducerState<IRouterState> = {
 
 export const AppState: IAppState = {
     router: InitAppRouteReducerState,
+    demo: initialDemoState
 };
 
 export function getInitialAppState() {

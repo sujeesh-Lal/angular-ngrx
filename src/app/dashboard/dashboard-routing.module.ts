@@ -6,6 +6,7 @@ import { DemoComponent } from './demo/demo.component';
 const routes: Routes = [
   // { path: '', component: DemoComponent },
   { path: 'demo', component: DemoComponent },
+  { path: 'test', component: DemoComponent },
   {
     path: '',
     redirectTo: '/demo',
