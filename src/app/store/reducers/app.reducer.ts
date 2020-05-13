@@ -6,8 +6,10 @@ import {
     MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import { demoReducers } from './demo.reducer';
+// import { demoReducers } from './demo.reducer';
 import * as fromRouter from '@ngrx/router-store';
+
+import { dashboardReducers } from './../../dashboard/store';
 
 import { routerReducer } from '@ngrx/router-store';
 import { IAppState, IRouterState } from './../../shared-service/models';
@@ -16,13 +18,13 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
     router: routerReducer,
-    demo: demoReducers
+    // demo: demoReducers
 };
 
 // console.log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
     return (state, action) => {
-        console.log(state);
+        // console.log(state);
         return reducer(state, action);
     };
 }
@@ -37,19 +39,11 @@ export function reloadStateMeta(reducer: ActionReducer<any>): ActionReducer<any>
         switch (action.type) {
             case EAppActionTypes.ReloadAppState:
                 {
-                    return reloadAppState();
+                    state = reloadAppState();
+                    return reducer(state, action);
                 }
-            case EAppActionTypes.FetchDataSuccess: {
-                return {
-                    ...state, ...action.payload
-                };
-            }
-            case EAppActionTypes.FetchDataError: {
-                return { ...state, ...action.payload };
-            }
-
             default: {
-                return state;
+                return reducer(state, action);
             }
         }
     };

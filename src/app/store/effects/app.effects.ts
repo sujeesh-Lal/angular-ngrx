@@ -3,7 +3,7 @@ import { Actions, createEffect, OnRunEffects, EffectNotification, Effect, ofType
 import { Observable } from 'rxjs';
 import { exhaustMap, takeUntil, switchMap, map, mergeMap, catchError } from 'rxjs/operators';
 import { MockService } from './../../shared-service/services/mock.services';
-import { EAppActionTypes, LoadDemoItems, FetchDataSuccess, FetchDataError } from './../actions/index';
+import { EAppActionTypes, FetchDataSuccess, FetchDataError } from './../actions/index';
 import { Mock } from 'protractor/built/driverProviders';
 
 
@@ -11,18 +11,6 @@ import { Mock } from 'protractor/built/driverProviders';
 export class AppEffects {
 
   constructor(private actions$: Actions, private mockService: MockService) { }
-
-  // @Effect()
-  // fetchData$ = this.actions$
-  //   .pipe(
-  //     ofType(EAppActionTypes.FetchData),
-  //     switchMap((action: any) => {
-  //       return this.mockService.getBulkData(1, 100, true);
-  //     })
-  //     , map((data: any) => {
-  //       // console.log(data);
-  //       return new ConfigLoaded(data);
-  //     }));
 
   @Effect()
   fetchData$ = this.actions$

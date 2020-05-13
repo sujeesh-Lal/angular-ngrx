@@ -21,3 +21,8 @@ export function demoReducers(
         }
     }
 }
+
+
+export interface IDashboard {
+    demo?: IDemoState;
+}

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ReloadAppState, UpdateDemoItems } from './../../store/actions';
-import { select, Store } from '@ngrx/store';
+import { UpdateDemoItems, demoItemsList } from './../store';
+import { select, Store, State } from '@ngrx/store';
 import { IAppState } from './../../shared-service/models';
+import * as dashboardStore from './../store';
 import {
-  demoItemsList, routerState
-} from './../../store/selectors';
+  routerState
+} from './../../store';
 
 @Component({
   selector: 'app-demo',
@@ -12,14 +13,20 @@ import {
   styleUrls: ['./demo.component.scss']
 })
 export class DemoComponent implements OnInit {
-  items$ = this.store.pipe(select(demoItemsList));
+  items$ = this.store.select(demoItemsList);
   routerData$ = this.store.pipe(select(routerState));
 
   constructor(private store: Store<IAppState>) { }
 
   ngOnInit(): void {
+    this.store
+      .select<any>((state: any) => state) // the complete state this time!!!
+      .subscribe((completeState: any) => {
+        console.log(completeState, 'tttt');
+      });
+
     this.items$.subscribe((data) => {
-      console.log(data);
+      console.log(data, 'fff');
     });
     this.routerData$.subscribe((data) => {
       console.log(data);
