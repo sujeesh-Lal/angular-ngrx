@@ -1,36 +1,19 @@
 export interface IDemoState {
-    // beginTillStatusFlag?: any;
-    // tillSessionDetails?: ITillSessionDetails;
     items?: IdemoItem[];
 }
 
 export interface IdemoItem {
-    a?: string;
-    b?: string;
-    c?: string;
+    brand?: string;
+    year?: number;
+    color?: string;
+    vin?: string;
 }
 
 export const initialDemoState: IDemoState = {
     items: [
-        {
-            a: 'aaa',
-            b: 'bbb',
-            c: 'ccc'
-        },
-        {
-            a: 'aaa1',
-            b: 'bbb1',
-            c: 'ccc1'
-        },
-        {
-            a: 'aaa2',
-            b: 'bbb2',
-            c: 'ccc2'
-        },
-        {
-            a: 'aaa3',
-            b: 'bbb3',
-            c: 'ccc3'
-        }
+        { brand: 'VW', year: 2012, color: 'Orange', vin: 'dsad231ff' },
+        { brand: 'Audi', year: 2011, color: 'Black', vin: 'gwregre345' },
+        { brand: 'Renault', year: 2005, color: 'Gray', vin: 'h354htr' },
+        { brand: 'BMW', year: 2003, color: 'Blue', vin: 'j6w54qgh' }
     ]
 };

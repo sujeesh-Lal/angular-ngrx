@@ -7,14 +7,14 @@ export function demoReducers(
 ): IDemoState {
 
     switch (action.type) {
-        case EDemoActionTypes.LoadDemoItems: {
+        case EDemoActionTypes.FetchDataError: {
             return {
                 ...state,
                 ...action.payload
             };
         }
-        case EDemoActionTypes.UpdateDemoItems: {
-            return { ...state, items: state.items.concat(action.payload) };
+        case EDemoActionTypes.FetchDataSuccess: {
+            return { ...state, items: action.payload.items };
         }
         default: {
             return state;

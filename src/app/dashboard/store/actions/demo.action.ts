@@ -1,18 +1,23 @@
 import { Action } from '@ngrx/store';
 
 export enum EDemoActionTypes {
-    LoadDemoItems = '[Demo] Load Data',
-    UpdateDemoItems = '[Demo] Update Data',
+    FetchData = '[Demo] Fetch App Data',
+    FetchDataSuccess = '[Demo] Fetch App Success',
+    FetchDataError = '[Demo] Fetch App Error',
 }
 
-export class LoadDemoItems implements Action {
-    public readonly type = EDemoActionTypes.LoadDemoItems;
+export class FetchData implements Action {
+    public readonly type = EDemoActionTypes.FetchData;
+}
+
+export class FetchDataSuccess implements Action {
+    public readonly type = EDemoActionTypes.FetchDataSuccess;
     constructor(public readonly payload: any) { }
 }
 
-export class UpdateDemoItems implements Action {
-    public readonly type = EDemoActionTypes.UpdateDemoItems;
+export class FetchDataError implements Action {
+    public readonly type = EDemoActionTypes.FetchDataError;
     constructor(public readonly payload: any) { }
 }
 
-export type DemoActions = LoadDemoItems | UpdateDemoItems;
+export type DemoActions = FetchData | FetchDataError | FetchDataSuccess;
