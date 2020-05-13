@@ -1,24 +1,15 @@
 import {
     ActionReducer,
     ActionReducerMap,
-    createFeatureSelector,
-    createSelector,
-    MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-// import { demoReducers } from './demo.reducer';
-import * as fromRouter from '@ngrx/router-store';
-
-import { dashboardReducers } from './../../dashboard/store';
 
 import { routerReducer } from '@ngrx/router-store';
-import { IAppState, IRouterState } from './../../shared-service/models';
+import { IAppState } from './../../shared-service/models';
 import { EAppActionTypes } from './../actions';
-import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
     router: routerReducer,
-    // demo: demoReducers
 };
 
 // console.log all actions
