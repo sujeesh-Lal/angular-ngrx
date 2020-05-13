@@ -27,12 +27,12 @@ export class DemoComponent implements OnInit {
   }
 
   dispatchAction() {
-    this.store.dispatch(new ReloadAppState({}));
-    this.store.dispatch(new UpdateDemoItems([{
-      a: 'aaa5',
-      b: 'bbb5',
-      c: 'ccc5',
-    }]));
+    // this.store.dispatch(new ReloadAppState({}));
+    // this.store.dispatch(new UpdateDemoItems([{
+    //   a: 'aaa5',
+    //   b: 'bbb5',
+    //   c: 'ccc5',
+    // }]));
   }
 
 }

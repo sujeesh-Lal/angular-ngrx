@@ -27,8 +27,6 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
     };
 }
 
-
-
 export function reloadStateMeta(reducer: ActionReducer<any>): ActionReducer<any> {
     return (state, action: any) => {
 
@@ -36,16 +34,29 @@ export function reloadStateMeta(reducer: ActionReducer<any>): ActionReducer<any>
             return { ...state, ...action.payload };
         }
 
-        if (action.type === EAppActionTypes.ReloadAppState) {
-            return reloadAppState();
-        } else {
-            return reducer(state, action);
+        switch (action.type) {
+            case EAppActionTypes.ReloadAppState:
+                {
+                    return reloadAppState();
+                }
+            case EAppActionTypes.FetchDataSuccess: {
+                return {
+                    ...state, ...action.payload
+                };
+            }
+            case EAppActionTypes.FetchDataError: {
+                return { ...state, ...action.payload };
+            }
+
+            default: {
+                return state;
+            }
         }
     };
 }
 
 console.log(environment.production);
 
-export const metaReducers: MetaReducer<IAppState>[] = !environment.production ? [debug] : [debug];
+export const metaReducers = !environment.production ? [debug, reloadStateMeta] : [reloadStateMeta];
 
 
