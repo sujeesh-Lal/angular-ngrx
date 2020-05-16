@@ -2,7 +2,6 @@ import { Action } from '@ngrx/store';
 
 export enum EAppActionTypes {
     ReloadAppState = '[App] Reload App State',
-
 }
 
 export class ReloadAppState implements Action {

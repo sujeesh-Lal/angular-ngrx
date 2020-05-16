@@ -23,6 +23,6 @@ export function demoReducers(
 }
 
 
-export interface IDashboard {
-    demo?: IDemoState;
-}
+// export interface IDashboard {
+//     demo?: IDemoState;
+// }
