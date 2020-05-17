@@ -1,4 +1,3 @@
 <router-outlet></router-outlet>
 <div (click)="resetState()">Reset</div>
 <app-loader *ngIf="isLoading | async"> </app-loader>
-<div>{{ (loader | async).message }}</div>

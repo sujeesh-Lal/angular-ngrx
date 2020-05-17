@@ -1,1 +1,4 @@
 <p>loader works!</p>
+<div *ngIf="loader | async">
+  <div>{{ (loader | async).message }}</div>
+</div>
