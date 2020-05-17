@@ -11,8 +11,16 @@ import { IAppState } from './shared-service/models';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<IAppState>) {
+
+    this.isLoading = this.store.pipe(
+      select((state: IAppState) => state.loader.active)
+    );
+
+    this.isLoading.subscribe(data => console.log(data));
+  }
   title = 'angular-ngrx';
+  isLoading: any;
   ngOnInit(): void {
   }
 

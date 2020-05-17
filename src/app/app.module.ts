@@ -13,6 +13,7 @@ import { getInitialAppState } from './store/state/app.state';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { MockService } from './shared-service/services/mock.services';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedServiceModule } from './shared-service/shared-service.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedServiceModule,
     StoreModule.forRoot(appReducers, {
       metaReducers,
       initialState: getInitialAppState,
@@ -32,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot(AppEffects)
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer },
