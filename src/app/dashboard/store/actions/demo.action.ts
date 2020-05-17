@@ -7,7 +7,7 @@ export enum EDemoActionTypes {
     FetchDataError = '[Demo] Fetch App Error',
 }
 
-@ShowLoader()
+@ShowLoader('fetching cars...')
 export class FetchData implements Action {
     public readonly type = EDemoActionTypes.FetchData;
 }

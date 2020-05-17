@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ReloadAppState } from './store/actions';
+import { ReloadAppState, loaderState } from './store';
 import { IAppState } from './shared-service/models';
 
 
@@ -14,13 +14,21 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<IAppState>) {
 
     this.isLoading = this.store.pipe(
-      select((state: IAppState) => state.loader.active)
+      select((state: IAppState) => {
+        return state.loader.active;
+      })
     );
 
     this.isLoading.subscribe(data => console.log(data));
+
+    this.loader = this.store.select(loaderState);
+
+    this.loader.subscribe(data => console.log(data.message));
   }
   title = 'angular-ngrx';
   isLoading: any;
+  loader;
+
   ngOnInit(): void {
   }
 

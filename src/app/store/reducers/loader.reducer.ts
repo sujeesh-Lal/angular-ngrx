@@ -23,7 +23,8 @@ export function loaderReducer(
             ];
             return Object.assign({}, state, {
                 active: newActionsInProgress.length,
-                actionsInProgress: newActionsInProgress
+                actionsInProgress: newActionsInProgress,
+                message: action.payload.message
             });
         }
         case loadingSpinner.HIDE_SPINNER: {
