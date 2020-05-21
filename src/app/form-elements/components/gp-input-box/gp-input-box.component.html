@@ -1,12 +1,12 @@
-<div [formGroup]="parent" class="ph-input-container margin-bottom-20">
+<div [formGroup]="parent" class="gp-input-container margin-bottom-20">
   <div class="row align-items-center">
     <div
-      class="ph-input-label-container {{ config.textAlign }}"
+      class="gp-input-label-container {{ config.textAlign }}"
       *ngIf="showLabel"
     >
       <div class="row no-gutters">
         <div class="col">
-          <span for="forId">{{ config.label }}</span>
+          <span for="forId">{{ inputLabel }}</span>
           <em
             [ngClass]="{
               'glyphicon glyphicon-asterisk': config['required'] && !isDisabled

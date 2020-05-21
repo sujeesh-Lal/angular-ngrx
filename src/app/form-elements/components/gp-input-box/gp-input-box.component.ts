@@ -13,13 +13,16 @@ import { InputValidators } from './../input-box/input-validators';
   styleUrls: ['./gp-input-box.component.scss']
 })
 export class GpInputBoxComponent implements OnInit {
+  showLabel = true;
   @Input() parent: FormGroup;
   @Input() controlName: string;
-  @Input()
-  set label(data: string) {
-    this.showLabel = (data && data.trim().length > 0) ? true : false;
-    this.config.label = data;
-  }
+  @Input() label: string;
+  // set label(data: string) {
+  //   this.showLabel = (data && data.trim().length > 0) ? true : false;
+  //   // this.showLabel = true;
+  //   this.config.label = data;
+  // }
+
   @Input() readonly: boolean;
   @Input() defaultValue: string;
   @Input() autocomplete: string; // possible value - 'on', 'off' (Default value is 'off').
@@ -31,11 +34,11 @@ export class GpInputBoxComponent implements OnInit {
     type: 'gpInput',
     className: 'gp-input-box-component',
     textAlign: 'text-left',
+    defaultValue: 'tth',
     required: true,
     readonly: false,
     controlName: 'inputBox',
     autocomplete: 'off',
-    defaultValue: '',
     placeholder: '',
     maxLength: 20,
     validationRule: /^[a-zA-Z0-9-]$/i,
@@ -49,7 +52,8 @@ export class GpInputBoxComponent implements OnInit {
     }
   };
 
-  showLabel = false;
+
+  labelText; string;
 
   constructor(private fb: FormBuilder) { }
 
@@ -168,6 +172,12 @@ export class GpInputBoxComponent implements OnInit {
   // Get for/id
   get getForId() {
     return this.forId ? this.forId : this.config.accessibility.forId;
+  }
+
+  get inputLabel() {
+    const labelText = this.label && this.label.trim().length > 0 ? this.label : this.config.label;
+    this.showLabel = labelText ? true : false;
+    return labelText;
   }
 
 }

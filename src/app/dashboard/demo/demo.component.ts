@@ -4,6 +4,7 @@ import { IAppState } from './../../shared-service/models';
 import * as dashboardStore from './../store';
 import * as rootStore from './../../store';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormElement } from 'src/app/form-elements/components/gp-input-box/form-element.interface';
 
 @Component({
   selector: 'app-demo',
@@ -15,10 +16,12 @@ export class DemoComponent implements OnInit {
   routerData$ = this.store.pipe(select(rootStore.routerState));
   public ClientForm: FormGroup;
   fieldName = 'email';
+  inputComponentConfig: FormElement;
 
   constructor(private store: Store<IAppState>, public form: FormBuilder) { }
 
   ngOnInit(): void {
+    this.setComponentConfig();
     this.store
       .select<any>((state: any) => state) // the complete state this time!!!
       .subscribe((completeState: any) => {
@@ -46,5 +49,32 @@ export class DemoComponent implements OnInit {
   dispatchAction() {
     this.store.dispatch(new dashboardStore.FetchData());
   }
+
+  setComponentConfig() {
+    this.inputComponentConfig = {
+      type: 'gpInput',
+      className: 'gp-input-box-component',
+      label: 'Middlename',
+      textAlign: 'text-left',
+      required: true,
+      readonly: false,
+      controlName: 'middleName',
+      autocomplete: 'off',
+      defaultValue: 'rrr',
+      placeholder: '',
+      maxLength: 20,
+      validationRule: /^[a-zA-Z0-9-]$/i,
+      validationMessage: {
+        emptyFieldError: 'Error on empty field',
+        invalidInputError: 'Error on invalid input',
+        customError: 'Business validation error'
+      },
+      accessibility: {
+        forId: 'forId'
+      }
+    };
+
+  }
+
 
 }

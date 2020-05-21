@@ -82,6 +82,14 @@
     [defaultValue]="'123'"
     [label]="'Lastname'"
   ></gp-input-box>
+
+  <br />
+
+  <ng-container
+    dynamicFormBuilder
+    [parent]="ClientForm"
+    [config]="inputComponentConfig"
+  ></ng-container>
 </form>
 
 <br />
