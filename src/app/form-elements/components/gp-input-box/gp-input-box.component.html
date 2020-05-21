@@ -24,7 +24,7 @@
         [ngClass]="getClass()"
         [formControlName]="cn"
         [maxLength]="config['maxLength']"
-        [(ngModel)]="defaultValue"
+        [value]="dv"
         [autocomplete]="autocomplete ? autocomplete : 'off'"
         [placeholder]="ph"
       />
@@ -39,11 +39,3 @@
     </div>
   </div>
 </div>
-
-<!-- [ngClass]="[
-cssClassName,
-{
-  inactive: isDisabled,
-  'error-border': required || invalid || customError
-}
-]" -->

@@ -41,7 +41,7 @@ export class GpInputBoxComponent implements OnInit {
     autocomplete: 'off',
     placeholder: '',
     maxLength: 20,
-    validationRule: /^[a-zA-Z0-9-]$/i,
+    validationRule: /^[a-zA-Z]$/i,
     validationMessage: {
       emptyFieldError: 'Error on empty field',
       invalidInputError: 'Error on invalid input',
@@ -102,6 +102,7 @@ export class GpInputBoxComponent implements OnInit {
             InputValidators.validateInput(this.config.validationRule),
           ])
         );
+        this.parent.get(this.controlName).setValue(this.dv);
       } else {
         this.parent.addControl(this.controlName, this.fb.control(null));
       }
@@ -115,6 +116,7 @@ export class GpInputBoxComponent implements OnInit {
             InputValidators.validateInput(this.config.validationRule)
           ]);
         this.parent.get(this.controlName).updateValueAndValidity();
+        this.parent.get(this.controlName).setValue(this.dv);
       }
     }
   }
