@@ -9,4 +9,81 @@
 
 <div>{{ (routerData$ | async).url }}</div>
 
-<input-box></input-box>
+<br />
+<br />
+<br />
+
+<form [formGroup]="ClientForm" class="p-3 bg-faded">
+  <!-- <div class="form-group row">
+    <label for="firstname" class="col-sm-3 col-form-label"><strong>Firstname</strong></label>
+    <div class="col-sm-9">
+      <input id="firstname" type="text" class="form-control" formControlName="firstname" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastname" class="col-sm-3 col-form-label"><strong>Lastname</strong></label>
+    <div class="col-sm-9">
+      <input id="lastname" type="text" class="form-control" formControlName="lastname" />
+    </div>
+  </div> -->
+
+  <!-- <input id="disabled-input" type="text" size="30" formControlName="lastname" /> -->
+
+  <!-- <input
+    name="name"
+    formControlName="lastName"
+    placeholder="Enter Name"
+    type="name"
+    required
+  />
+
+  <input
+    name="name"
+    formControlName="firstName"
+    placeholder="Enter Name"
+    type="name"
+    required
+  />
+
+  <input
+    name="email"
+    [formControlName]="fieldName"
+    placeholder="Enter email"
+    type="name"
+    email
+    required
+  /> -->
+
+  <!-- <input-box
+    [parent]="ClientForm"
+    [placeholder]="'age'"
+    [autocomplete]=""
+    [readonly]="false"
+    [defaultValue]="'gdfsdf'"
+  ></input-box> -->
+
+  <gp-input-box
+    [parent]="ClientForm"
+    [controlName]="'firstName'"
+    [placeholder]="'gp-age'"
+    [autocomplete]=""
+    [readonly]="false"
+    [defaultValue]="'123'"
+    [label]="'Firstname'"
+  ></gp-input-box>
+  <br />
+
+  <gp-input-box
+    [parent]="ClientForm"
+    [controlName]="'lastName'"
+    [placeholder]="'gp-age'"
+    [autocomplete]=""
+    [readonly]="false"
+    [defaultValue]="'123'"
+    [label]="'Lastname'"
+  ></gp-input-box>
+</form>
+
+<br />
+<br />
+<br />

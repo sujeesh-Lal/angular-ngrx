@@ -1,0 +1,49 @@
+<div [formGroup]="parent" class="ph-input-container margin-bottom-20">
+  <div class="row align-items-center">
+    <div
+      class="ph-input-label-container {{ config.textAlign }}"
+      *ngIf="showLabel"
+    >
+      <div class="row no-gutters">
+        <div class="col">
+          <span for="forId">{{ config.label }}</span>
+          <em
+            [ngClass]="{
+              'glyphicon glyphicon-asterisk': config['required'] && !isDisabled
+            }"
+            >*</em
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="col-">
+      <input
+        id="forId"
+        [readonly]="ro"
+        [ngClass]="getClass()"
+        [formControlName]="cn"
+        [maxLength]="config['maxLength']"
+        [(ngModel)]="defaultValue"
+        [autocomplete]="autocomplete ? autocomplete : 'off'"
+        [placeholder]="ph"
+      />
+    </div>
+  </div>
+
+  <div class="row" *ngIf="required || invalid || customError">
+    <div class="col- offset-">
+      <div class="error">
+        <span>{{ getErrorMessage() }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- [ngClass]="[
+cssClassName,
+{
+  inactive: isDisabled,
+  'error-border': required || invalid || customError
+}
+]" -->
