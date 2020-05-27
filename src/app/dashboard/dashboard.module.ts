@@ -8,13 +8,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { dashboardEffects, dashboardReducers } from './store';
 import { FormElementsModule } from './../form-elements/form-elements.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrimeThemeComponent } from './prime-theme/prime-theme.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-  declarations: [DemoComponent],
+  declarations: [DemoComponent, PrimeThemeComponent],
   imports: [
     CommonModule,
     FormElementsModule,
     ReactiveFormsModule,
+    InputTextModule,
     FormsModule,
     DashboardRoutingModule,
     StoreModule.forFeature('dashboardFeature', dashboardReducers),
