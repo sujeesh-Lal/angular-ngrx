@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./benefit-min-max.component.scss']
 })
 export class BenefitMinMaxComponent implements OnInit {
-
+  value = '';
   constructor() { }
 
   ngOnInit(): void {
