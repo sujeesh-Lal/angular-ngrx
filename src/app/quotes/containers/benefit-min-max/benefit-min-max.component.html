@@ -1,8 +1,25 @@
-<p>benefit-min-max works!</p>
-<p-inputNumber
+<!-- <p-inputNumber
   mode="currency"
   [(ngModel)]="value"
   currency="USD"
   locale="en-US"
 >
-</p-inputNumber>
+</p-inputNumber> -->
+
+<div class="benefit-min-max-container ui-g-12">
+  <div class="benefit-min-container ui-g-12">
+    <div class="benefit-min-label ui-g-12">
+      Is there a minimum benefit amount?
+    </div>
+    <div class="benefit-min-wrapper ui-g-12">
+      <div class="benefit-min-input">
+        <input type="text" pInputText />
+      </div>
+      <div class="benefit-min-input">OR</div>
+      <div class="benefit-min-button"></div>
+    </div>
+  </div>
+  <div class="benefit-max-container">
+    Is there a maximum benefit or schema earnings amount?
+  </div>
+</div>
