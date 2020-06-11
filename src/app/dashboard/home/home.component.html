@@ -16,7 +16,20 @@
 
   <br />
 
-  <gp name="state" formControlName="state"></gp>
+  <!-- <gp name="state" formControlName="state"></gp> -->
+
+  <!-- <p-selectButton
+    [options]="cities1"
+    (onOptionClick)="selectItem($event)"
+    formControlName="cities"
+  ></p-selectButton> -->
+
+  <png-select
+    [options]="cities1"
+    (onOptionClick)="selectItem($event)"
+    formControlName="cities"
+  ></png-select>
+
   <!-- <state-selector name="state" formControlName="state"></state-selector> -->
   <button>Submit</button>
 </form>
@@ -30,9 +43,9 @@
     <button>Submit</button>
   </form> -->
 
-<p-selectButton
+<!-- <p-selectButton
   [options]="cities1"
   [(ngModel)]="selectedCity1"
-></p-selectButton>
+></p-selectButton> -->
 
-<png-select [options]="cities1" [(ngModel)]="selectedCity1"></png-select>
+<!-- <png-select [options]="cities1" [(ngModel)]="selectedCity1"></png-select> -->

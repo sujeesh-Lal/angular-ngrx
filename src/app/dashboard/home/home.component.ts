@@ -14,12 +14,10 @@ export class HomeComponent implements OnInit {
   selectedCity1: any;
   constructor(public form: FormBuilder) {
     this.cities1 = [
-      { label: 'Select City', value: null },
-      { label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } },
-      { label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } },
-      { label: 'London', value: { id: 3, name: 'London', code: 'LDN' } },
-      { label: 'Istanbul', value: { id: 4, name: 'Istanbul', code: 'IST' } },
-      { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } }
+      { label: 'New York', value: 'NY' },
+      { label: 'Rome', value: 'RM' },
+      { label: 'London', value: 'LDN' },
+      { label: 'Istanbul', value: 'IST' },
     ];
   }
 
@@ -28,10 +26,11 @@ export class HomeComponent implements OnInit {
       // mySwitch: [true],
       // rate: [],
       // fullname: ['A'],
-      state: ['S'],
+      // state: ['S'],
+      cities: ['RM'],
 
     });
-    // this.ClientForm.controls.rate.setValue(2);
+    // this.ClientForm.controls.cities.setValue('rome');
     // this.ClientForm.controls.rate.setValue('B');
     // console.log(this.ClientForm);
     (window as any).gp = this.ClientForm.controls;
@@ -45,9 +44,13 @@ export class HomeComponent implements OnInit {
     // console.log(this.ClientForm.controls.rate.value, 'rate');
     // this.ClientForm.controls.rate.setValue(null);
     // console.log(this.ClientForm.controls.rate.value, 'rate');
+    this.ClientForm.controls.cities.setValue('IST');
+    // console.log(this.ClientForm.controls.fullname.value, 'fn');
+    // this.ClientForm.controls.fullname.setValue('C');
+    // console.log(this.ClientForm.controls.fullname.value, 'fn');
+  }
 
-    console.log(this.ClientForm.controls.fullname.value, 'fn');
-    this.ClientForm.controls.fullname.setValue('C');
-    console.log(this.ClientForm.controls.fullname.value, 'fn');
+  selectItem(evt: any) {
+    console.log(evt);
   }
 }
