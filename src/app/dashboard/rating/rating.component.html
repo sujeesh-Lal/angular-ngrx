@@ -5,3 +5,11 @@
   <ng-container *ngIf="starred; else noStar">⭐</ng-container>
   <ng-template #noStar>·</ng-template>
 </span>
+<br />
+
+<!-- <div *ngFor="let city of cities; let i = index">
+  <p-selectButton
+    [options]="[city]"
+    (onOptionClick)="selectItem($event)"
+  ></p-selectButton>
+</div> -->

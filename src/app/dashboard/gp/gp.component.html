@@ -1,0 +1,13 @@
+<!-- <select [name]="name" [(ngModel)]="value">
+  <option *ngFor="let state of stateList" [value]="state.abbreviation">
+    {{ state.name }}
+  </option>
+</select> -->
+
+<select [name]="name" (change)="selectData($event)">
+  <option *ngFor="let state of stateList" [value]="state.abbreviation">
+    {{ state.name }}
+  </option>
+</select>
+<!-- <div>{{ value }}</div> -->
+<div>==={{ val }}</div>

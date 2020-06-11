@@ -1,0 +1,12 @@
+<label>{{ value }}</label>
+<!-- <input
+  [type]="type"
+  [placeholder]="placeholder"
+  [value]="value"
+  [disabled]="disabled"
+/> -->
+<br />
+<p-selectButton
+  [options]="cities"
+  (onOptionClick)="selectItem($event)"
+></p-selectButton>
