@@ -14,12 +14,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class GpSelectButtonsComponent implements ControlValueAccessor {
-
-  // constructor() { }
-
-  // ngOnInit(): void {
-  // }
-
   @HostBinding('attr.id')
   externalId = '';
 

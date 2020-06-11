@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.ClientForm = this.form.group({
-      mySwitch: [true]
+      mySwitch: [true],
+      rate: []
+
     });
     console.log(this.ClientForm);
 
@@ -23,5 +25,7 @@ export class HomeComponent implements OnInit {
   submit() {
     // alert(`Value: ${this.ClientForm.controls.mySwitch.value}`);
     console.log(`Value: ${this.ClientForm.controls.mySwitch.value}`);
+    console.log(this.ClientForm.controls.rate.value, 'rate');
+    this.ClientForm.controls.rate.setValue(1);
   }
 }

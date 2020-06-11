@@ -12,9 +12,10 @@ import { PrimeThemeComponent } from './prime-theme/prime-theme.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { SwitchComponent } from './switch/switch.component';
 import { HomeComponent } from './home/home.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
-  declarations: [DemoComponent, PrimeThemeComponent, SwitchComponent, HomeComponent],
+  declarations: [DemoComponent, PrimeThemeComponent, SwitchComponent, HomeComponent, RatingComponent],
   imports: [
     CommonModule,
     FormElementsModule,
