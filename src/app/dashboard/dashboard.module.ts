@@ -17,10 +17,11 @@ import { RatingComponent } from './rating/rating.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { StateSelectorComponent } from './state-selector.component';
 import { GpComponent } from './gp/gp.component';
+import { PngSelectComponent } from './png-select/png-select.component';
 
 @NgModule({
   declarations: [DemoComponent, PrimeThemeComponent, SwitchComponent, HomeComponent, RatingComponent,
-    CustomInputComponent, StateSelectorComponent, GpComponent],
+    CustomInputComponent, StateSelectorComponent, GpComponent, PngSelectComponent],
   imports: [
     CommonModule,
     FormElementsModule,
