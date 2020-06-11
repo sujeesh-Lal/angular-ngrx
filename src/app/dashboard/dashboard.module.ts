@@ -10,9 +10,11 @@ import { FormElementsModule } from './../form-elements/form-elements.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeThemeComponent } from './prime-theme/prime-theme.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { SwitchComponent } from './switch/switch.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [DemoComponent, PrimeThemeComponent],
+  declarations: [DemoComponent, PrimeThemeComponent, SwitchComponent, HomeComponent],
   imports: [
     CommonModule,
     FormElementsModule,

@@ -1,0 +1,16 @@
+<p>home works!</p>
+
+<form [formGroup]="ClientForm" (ngSubmit)="submit()">
+  <label for="switch-2">Reactive Forms</label>
+  <gp-select-buttons
+    id="switch-2"
+    formControlName="mySwitch"
+  ></gp-select-buttons>
+  <button>Submit</button>
+</form>
+
+<!-- <form [formGroup]="ClientForm" (ngSubmit)="submit()">
+    <label for="switch-2">Reactive Forms</label>
+    <app-switch id="switch-2" formControlName="mySwitch"></app-switch>
+    <button>Submit</button>
+  </form> -->
