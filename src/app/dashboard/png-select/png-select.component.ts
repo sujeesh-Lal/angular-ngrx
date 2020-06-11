@@ -16,6 +16,7 @@ export const SELECTBUTTON_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'png-select',
   templateUrl: './png-select.component.html',
+  styleUrls: ['./png-select.component.scss'],
   providers: [SELECTBUTTON_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.Default
 })

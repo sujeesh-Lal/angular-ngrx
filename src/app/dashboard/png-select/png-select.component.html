@@ -1,13 +1,13 @@
 <div
   [ngClass]="
-    'ui-selectbutton ui-buttonset ui-widget ui-corner-all ui-buttonset-' +
+    ' ui-selectbutton ui-buttonset ui-widget ui-corner-all ui-custom-selectbutton ui-buttonset-' +
     (options ? options.length : 0)
   "
   [ngStyle]="style"
   [class]="styleClass"
   role="group"
 >
-  <div *ngFor="let option of options; let i = index">
+  <div style="display: flex" *ngFor="let option of options; let i = index">
     <div
       #btn
       class="ui-button ui-widget ui-state-default ui-button-text-only {{
@@ -51,6 +51,6 @@
       </ng-template>
     </div>
 
-    <!-- <div class="ui-custom-selector-divider">OR</div> -->
+    <div style="display: flex;" class="ui-custom-selector-divider">OR</div>
   </div>
 </div>
