@@ -4,10 +4,17 @@
   </option>
 </select> -->
 
-<select [name]="name" (change)="selectData($event)">
+<!-- <select [name]="name" (change)="selectData($event)">
   <option *ngFor="let state of stateList" [value]="state.abbreviation">
     {{ state.name }}
   </option>
-</select>
+</select> -->
 <!-- <div>{{ value }}</div> -->
 <div>==={{ val }}</div>
+<div>model = {{ city }}</div>
+
+<p-selectButton
+  [options]="cities"
+  (onOptionClick)="selectItem($event)"
+  [(ngModel)]="city"
+></p-selectButton>

@@ -22,6 +22,14 @@ export class GpComponent implements ControlValueAccessor {
   // tslint:disable-next-line:no-input-rename
   @Input('value')
   val: string;
+  cities: any = [];
+  city: any;
+
+  constructor() {
+    this.cities.push({ label: 'Q', value: 'Q' });
+    this.cities.push({ label: 'R', value: 'R' });
+    this.cities.push({ label: 'S', value: 'S' });
+  }
 
   stateList: any[] = [
     {
@@ -54,6 +62,7 @@ export class GpComponent implements ControlValueAccessor {
 
   set value(val) {
     this.val = val;
+    this.city = val;
     this.onChange(val);
     this.onTouched();
   }
@@ -78,5 +87,15 @@ export class GpComponent implements ControlValueAccessor {
     this.value = evt.currentTarget.value;
 
   }
+
+  selectItem(evt: any) {
+    // console.log(evt.option.value);
+    // this.value = evt.option.value;
+    // this.ngControl.viewModel = evt.option.value;
+    // this.writeValue(evt.option.value);
+    this.val = evt.option.value;
+    this.value = evt.option.value;
+  }
+
 
 }

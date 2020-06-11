@@ -17,7 +17,7 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
 // console.log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
     return (state, action) => {
-        console.log(state);
+        // console.log(state);
         return reducer(state, action);
     };
 }

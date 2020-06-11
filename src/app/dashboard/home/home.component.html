@@ -1,4 +1,4 @@
-<p>home works!</p>
+<!-- <p>home works!</p> -->
 
 <form [formGroup]="ClientForm" (ngSubmit)="submit()">
   <!-- <label for="switch-2">Reactive Forms</label>
@@ -6,13 +6,13 @@
     id="switch-2"
     formControlName="mySwitch"
   ></gp-select-buttons> -->
-  <rating formControlName="rate"></rating>
+  <!-- <rating formControlName="rate"></rating>
   <custom-input
     label="Full name"
     placeholder="John Doe"
     formControlName="fullname"
   >
-  </custom-input>
+  </custom-input> -->
 
   <br />
 
@@ -21,7 +21,7 @@
   <button>Submit</button>
 </form>
 
-<h2>Current selection:</h2>
+<!-- <h2>Current selection:</h2> -->
 <!-- <h3>{{ state.value }}</h3> -->
 
 <!-- <form [formGroup]="ClientForm" (ngSubmit)="submit()">
@@ -29,3 +29,8 @@
     <app-switch id="switch-2" formControlName="mySwitch"></app-switch>
     <button>Submit</button>
   </form> -->
+
+<p-selectButton
+  [options]="cities1"
+  [(ngModel)]="selectedCity1"
+></p-selectButton>
