@@ -11,13 +11,30 @@ export class HomeComponent implements OnInit {
   public ClientForm: FormGroup;
   value = false;
   cities1: any = [];
+  ddd: any = [];
   selectedCity1: any;
+  selecteddd: any;
+
+  types: any;
+  selectedTypes: string[] = ['Apartment', 'Studio'];
+
   constructor(public form: FormBuilder) {
     this.cities1 = [
       { label: 'New York', value: 'NY' },
       { label: 'Rome', value: 'RM' },
       { label: 'London', value: 'LDN' },
       { label: 'Istanbul', value: 'IST' },
+    ];
+    this.ddd = [
+      { label: 'New York', value: 'NY' },
+      { label: 'Rome', value: 'RM' },
+      { label: 'Istanbul', value: 'IST' },
+    ];
+
+    this.types = [
+      { label: 'Apartment', value: 'Apartment' },
+      { label: 'House', value: 'House' },
+      { label: 'Studio', value: 'Studio' }
     ];
   }
 
@@ -28,6 +45,7 @@ export class HomeComponent implements OnInit {
       // fullname: ['A'],
       // state: ['S'],
       cities: ['RM'],
+      ddd: [this.selectedTypes],
 
     });
     // this.ClientForm.controls.cities.setValue('rome');
@@ -52,5 +70,8 @@ export class HomeComponent implements OnInit {
 
   selectItem(evt: any) {
     console.log(evt);
+  }
+  selectItemDD(evt: any) {
+    console.log(this.ClientForm.controls.ddd.value);
   }
 }

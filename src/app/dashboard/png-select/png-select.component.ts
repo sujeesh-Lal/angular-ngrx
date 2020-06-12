@@ -25,6 +25,8 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
 
   @Input() multiple: boolean;
 
+  @Input() separator: string;
+
   @Input() style: any;
 
   @Input() styleClass: string;

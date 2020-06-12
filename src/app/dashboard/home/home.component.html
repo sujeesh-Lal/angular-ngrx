@@ -28,7 +28,25 @@
     [options]="cities1"
     (optionClick)="selectItem($event)"
     formControlName="cities"
+    [separator]="''"
+  >
+    <!-- <ng-template let-item>
+      <span>{{ item.label }}</span>
+    </ng-template> -->
+  </png-select>
+
+  <png-select
+    [options]="types"
+    multiple="multiple"
+    formControlName="ddd"
   ></png-select>
+
+  <!-- <p-selectButton
+    [options]="ddd"
+    multiple="multiple"
+    (onOptionClick)="selectItemDD($event)"
+    formControlName="ddd"
+  ></p-selectButton> -->
 
   <!-- <state-selector name="state" formControlName="state"></state-selector> -->
   <button>Submit</button>
@@ -49,3 +67,16 @@
 ></p-selectButton> -->
 
 <!-- <png-select [options]="cities1" [(ngModel)]="selectedCity1"></png-select> -->
+
+<h3>Multiple</h3>
+<png-select
+  [options]="types"
+  [(ngModel)]="selectedTypes"
+  multiple="multiple"
+></png-select>
+<p>
+  Selected Types:
+  <span style="font-weight: bold" *ngFor="let type of selectedTypes"
+    >{{ type }}
+  </span>
+</p>
