@@ -7,7 +7,10 @@
   [class]="styleClass"
   role="group"
 >
-  <div style="display: flex" *ngFor="let option of options; let i = index">
+  <div
+    class="ui-custom-selectbutton-item"
+    *ngFor="let option of options; let i = index"
+  >
     <div
       #btn
       class="ui-button ui-widget ui-state-default ui-button-text-only {{
@@ -51,6 +54,8 @@
       </ng-template>
     </div>
 
-    <div style="display: flex;" class="ui-custom-selector-divider">OR</div>
+    <div class="ui-custom-selectbutton-divider">
+      OR
+    </div>
   </div>
 </div>

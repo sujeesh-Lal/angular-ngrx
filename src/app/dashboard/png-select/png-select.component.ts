@@ -1,8 +1,7 @@
 import {
-  NgModule, Component, Input, Output, EventEmitter, forwardRef, ChangeDetectorRef,
+  Component, Input, Output, EventEmitter, forwardRef, ChangeDetectorRef,
   ContentChild, TemplateRef, SimpleChanges, OnChanges, ChangeDetectionStrategy
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SelectItem } from './selectitem';
 import { ObjectUtils } from './objectutils';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -151,10 +150,3 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
     return index;
   }
 }
-
-// @NgModule({
-//   imports: [CommonModule],
-//   exports: [PngSelectComponent],
-//   declarations: [PngSelectComponent]
-// })
-// export class SelectButtonModule { }

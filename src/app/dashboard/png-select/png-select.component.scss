@@ -12,3 +12,20 @@
 .ui-custom-selectbutton {
   display: flex;
 }
+
+.ui-custom-selectbutton-item {
+  display: flex;
+}
+
+.ui-custom-selectbutton-divider {
+  display: flex;
+  align-self: center;
+  width: 50px;
+  justify-content: center;
+}
+
+.ui-custom-selectbutton
+  .ui-custom-selectbutton-item:last-child
+  .ui-custom-selectbutton-divider {
+  display: none;
+}
