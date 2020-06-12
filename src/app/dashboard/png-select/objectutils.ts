@@ -15,11 +15,11 @@ export class ObjectUtils {
         if (obj1 === obj2) { return true; }
 
         if (obj1 && obj2 && typeof obj1 === 'object' && typeof obj2 === 'object') {
-            let arrA = Array.isArray(obj1)
-                , arrB = Array.isArray(obj2)
-                , i
-                , length
-                , key;
+            const arrA = Array.isArray(obj1);
+            const arrB = Array.isArray(obj2);
+            let i;
+            let length;
+            let key;
 
             if (arrA && arrB) {
                 length = obj1.length;
@@ -32,13 +32,13 @@ export class ObjectUtils {
 
             if (arrA !== arrB) { return false; }
 
-            const dateA = obj1 instanceof Date
-                , dateB = obj2 instanceof Date;
+            const dateA = obj1 instanceof Date;
+            const dateB = obj2 instanceof Date;
             if (dateA !== dateB) { return false; }
             if (dateA && dateB) { return obj1.getTime() === obj2.getTime(); }
 
-            const regexpA = obj1 instanceof RegExp
-                , regexpB = obj2 instanceof RegExp;
+            const regexpA = obj1 instanceof RegExp;
+            const regexpB = obj2 instanceof RegExp;
             if (regexpA !== regexpB) { return false; }
             if (regexpA && regexpB) { return obj1.toString() === obj2.toString(); }
 
@@ -93,16 +93,16 @@ export class ObjectUtils {
         return !!(obj && obj.constructor && obj.call && obj.apply);
     }
 
-    public static reorderArray(value: any[], from: number, to: number) {
-        let target: number;
-        if (value && from !== to) {
-            if (to >= value.length) {
-                to %= value.length;
-                from %= value.length;
-            }
-            value.splice(to, 0, value.splice(from, 1)[0]);
-        }
-    }
+    // public static reorderArray(value: any[], from: number, to: number) {
+    //     // let target: number;
+    //     if (value && from !== to) {
+    //         if (to >= value.length) {
+    //             to %= value.length;
+    //             from %= value.length;
+    //         }
+    //         value.splice(to, 0, value.splice(from, 1)[0]);
+    //     }
+    // }
 
     public static generateSelectItems(val: any[], field: string): SelectItem[] {
         let selectItems: SelectItem[];
@@ -116,68 +116,68 @@ export class ObjectUtils {
         return selectItems;
     }
 
-    public static insertIntoOrderedArray(item: any, index: number, arr: any[], sourceArr: any[]): void {
-        if (arr.length > 0) {
-            let injected = false;
-            for (let i = 0; i < arr.length; i++) {
-                const currentItemIndex = this.findIndexInList(arr[i], sourceArr);
-                if (currentItemIndex > index) {
-                    arr.splice(i, 0, item);
-                    injected = true;
-                    break;
-                }
-            }
+    // public static insertIntoOrderedArray(item: any, index: number, arr: any[], sourceArr: any[]): void {
+    //     if (arr.length > 0) {
+    //         let injected = false;
+    //         for (let i = 0; i < arr.length; i++) {
+    //             const currentItemIndex = this.findIndexInList(arr[i], sourceArr);
+    //             if (currentItemIndex > index) {
+    //                 arr.splice(i, 0, item);
+    //                 injected = true;
+    //                 break;
+    //             }
+    //         }
 
-            if (!injected) {
-                arr.push(item);
-            }
-        }
-        else {
-            arr.push(item);
-        }
-    }
+    //         if (!injected) {
+    //             arr.push(item);
+    //         }
+    //     }
+    //     else {
+    //         arr.push(item);
+    //     }
+    // }
 
-    public static findIndexInList(item: any, list: any): number {
-        let index = -1;
+    // public static findIndexInList(item: any, list: any): number {
+    //     let index = -1;
 
-        if (list) {
-            for (let i = 0; i < list.length; i++) {
-                if (list[i] === item) {
-                    index = i;
-                    break;
-                }
-            }
-        }
+    //     if (list) {
+    //         for (let i = 0; i < list.length; i++) {
+    //             if (list[i] === item) {
+    //                 index = i;
+    //                 break;
+    //             }
+    //         }
+    //     }
 
-        return index;
-    }
+    //     return index;
+    // }
 
-    public static removeAccents(str) {
-        if (str && str.search(/[\xC0-\xFF]/g) > -1) {
-            str = str
-                .replace(/[\xC0-\xC5]/g, 'A')
-                .replace(/[\xC6]/g, 'AE')
-                .replace(/[\xC7]/g, 'C')
-                .replace(/[\xC8-\xCB]/g, 'E')
-                .replace(/[\xCC-\xCF]/g, 'I')
-                .replace(/[\xD0]/g, 'D')
-                .replace(/[\xD1]/g, 'N')
-                .replace(/[\xD2-\xD6\xD8]/g, 'O')
-                .replace(/[\xD9-\xDC]/g, 'U')
-                .replace(/[\xDD]/g, 'Y')
-                .replace(/[\xDE]/g, 'P')
-                .replace(/[\xE0-\xE5]/g, 'a')
-                .replace(/[\xE6]/g, 'ae')
-                .replace(/[\xE7]/g, 'c')
-                .replace(/[\xE8-\xEB]/g, 'e')
-                .replace(/[\xEC-\xEF]/g, 'i')
-                .replace(/[\xF1]/g, 'n')
-                .replace(/[\xF2-\xF6\xF8]/g, 'o')
-                .replace(/[\xF9-\xFC]/g, 'u')
-                .replace(/[\xFE]/g, 'p')
-                .replace(/[\xFD\xFF]/g, 'y');
-        }
+    // public static removeAccents(str) {
+    //     if (str && str.search(/[\xC0-\xFF]/g) > -1) {
+    //         str = str
+    //             .replace(/[\xC0-\xC5]/g, 'A')
+    //             .replace(/[\xC6]/g, 'AE')
+    //             .replace(/[\xC7]/g, 'C')
+    //             .replace(/[\xC8-\xCB]/g, 'E')
+    //             .replace(/[\xCC-\xCF]/g, 'I')
+    //             .replace(/[\xD0]/g, 'D')
+    //             .replace(/[\xD1]/g, 'N')
+    //             .replace(/[\xD2-\xD6\xD8]/g, 'O')
+    //             .replace(/[\xD9-\xDC]/g, 'U')
+    //             .replace(/[\xDD]/g, 'Y')
+    //             .replace(/[\xDE]/g, 'P')
+    //             .replace(/[\xE0-\xE5]/g, 'a')
+    //             .replace(/[\xE6]/g, 'ae')
+    //             .replace(/[\xE7]/g, 'c')
+    //             .replace(/[\xE8-\xEB]/g, 'e')
+    //             .replace(/[\xEC-\xEF]/g, 'i')
+    //             .replace(/[\xF1]/g, 'n')
+    //             .replace(/[\xF2-\xF6\xF8]/g, 'o')
+    //             .replace(/[\xF9-\xFC]/g, 'u')
+    //             .replace(/[\xFE]/g, 'p')
+    //             .replace(/[\xFD\xFF]/g, 'y');
+    //     }
 
-        return str;
-    }
+    //     return str;
+    // }
 }

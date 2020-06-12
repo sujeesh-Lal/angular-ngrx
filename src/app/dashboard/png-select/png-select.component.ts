@@ -37,9 +37,9 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
 
   @Input() optionLabel: string;
 
-  @Output() onOptionClick: EventEmitter<any> = new EventEmitter();
+  @Output() optionClick: EventEmitter<any> = new EventEmitter();
 
-  @Output() onChange: EventEmitter<any> = new EventEmitter();
+  @Output() optionChange: EventEmitter<any> = new EventEmitter();
 
   @ContentChild(TemplateRef) itemTemplate;
 
@@ -47,16 +47,16 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
 
   focusedItem: HTMLDivElement;
 
-  _options: any[];
+  iOptions: any[];
 
-  onModelChange: Function = () => { };
+  onModelChange: any = () => { };
 
-  onModelTouched: Function = () => { };
+  onModelTouched: any = () => { };
 
   constructor(private cd: ChangeDetectorRef) { }
 
   @Input() get options(): any[] {
-    return this._options;
+    return this.iOptions;
   }
 
   set options(val: any[]) {
@@ -65,7 +65,7 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
 
   ngOnChanges(simpleChange: SimpleChanges) {
     if (simpleChange.options) {
-      this._options = this.optionLabel ? ObjectUtils.generateSelectItems(simpleChange.options.currentValue, this.optionLabel)
+      this.iOptions = this.optionLabel ? ObjectUtils.generateSelectItems(simpleChange.options.currentValue, this.optionLabel)
         : simpleChange.options.currentValue;
     }
   }
@@ -75,11 +75,11 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn: Function): void {
+  registerOnChange(fn: any): void {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn: Function): void {
+  registerOnTouched(fn: any): void {
     this.onModelTouched = fn;
   }
 
@@ -105,7 +105,7 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
       this.value = option.value;
     }
 
-    this.onOptionClick.emit({
+    this.optionClick.emit({
       originalEvent: event,
       option,
       index
@@ -113,7 +113,7 @@ export class PngSelectComponent implements ControlValueAccessor, OnChanges {
 
     this.onModelChange(this.value);
 
-    this.onChange.emit({
+    this.optionChange.emit({
       originalEvent: event,
       value: this.value
     });
