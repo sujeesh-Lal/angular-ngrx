@@ -10,6 +10,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { InputMaskModule } from 'primeng/inputmask';
+// import { PngSelectComponent } from './../dashboard/png-select/png-select.component';
+import { DashboardModule } from './../dashboard/dashboard.module';
 
 @NgModule({
   declarations: [BenefitMinMaxComponent],
@@ -21,7 +23,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     InputTextModule,
     InputMaskModule,
     KeyFilterModule,
-    QuotesRoutingModule
+    QuotesRoutingModule,
+    DashboardModule
   ]
 })
 export class QuotesModule { }

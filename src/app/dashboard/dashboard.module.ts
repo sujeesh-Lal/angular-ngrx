@@ -32,6 +32,7 @@ import { PngSelectComponent } from './png-select/png-select.component';
     DashboardRoutingModule,
     StoreModule.forFeature('dashboardFeature', dashboardReducers),
     EffectsModule.forFeature(dashboardEffects)
-  ]
+  ],
+  exports: [PngSelectComponent]
 })
 export class DashboardModule { }

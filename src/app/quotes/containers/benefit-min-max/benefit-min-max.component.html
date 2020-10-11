@@ -23,3 +23,13 @@
     Is there a maximum benefit or schema earnings amount?
   </div>
 </div>
+
+<png-select
+  [options]="cities1"
+  (optionClick)="selectItem($event)"
+  [separator]="''"
+>
+  <!-- <ng-template let-item>
+  <span>{{ item.label }}</span>
+</ng-template> -->
+</png-select>
