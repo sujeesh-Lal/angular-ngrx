@@ -1,0 +1,415 @@
+<p-table
+  [value]="memberData"
+  [scrollable]="true"
+  [style]="{ width: '100%' }"
+  scrollHeight="200px"
+  [frozenColumns]="memberDataFrozenCols"
+  frozenWidth="615px"
+  [columns]="memberDataScrollableCols"
+  (onEditInit)="onEditInit($event)"
+  (onEditCancel)="onEditCancel($event)"
+  (onEditComplete)="onEditComplete($event)"
+>
+  <ng-template pTemplate="frozencolgroup" let-columns>
+    <colgroup>
+      <col style="width:50px" />
+      <col style="width:400px" />
+      <col style="width:85px" />
+      <col style="width:80px" />
+    </colgroup>
+  </ng-template>
+  <ng-template pTemplate="colgroup" let-columns>
+    <colgroup>
+      <ng-container *ngFor="let col of columns">
+        <col style="width:80px" *ngIf="col.field === 'row_number'" />
+        <col style="width:160px" *ngIf="col.field === 'category'" />
+        <col style="width:145px" *ngIf="col.field === 'scheme_earnings'" />
+        <col style="width:135px" *ngIf="col.field === 'work_postcode'" />
+        <col style="width:80px" *ngIf="col.field === 'job_title'" />
+        <col style="width:260px" *ngIf="col.field === 'date_of_birth'" />
+        <col style="width:50px" *ngIf="col.field === 'age'" />
+        <col style="width:140px" *ngIf="col.field === 'gender'" />
+        <col style="width:100px" *ngIf="col.field === 'first_name'" />
+        <col style="width:100px" *ngIf="col.field === 'last_name'" />
+        <col style="width:80px" *ngIf="col.field === 'initials'" />
+        <col style="width:120px" *ngIf="col.field === 'employee_payroll_no'" />
+        <col
+          style="width:260px"
+          *ngIf="col.field === 'group_income_protection_benefit'"
+        />
+        <col
+          style="width:270px"
+          *ngIf="col.field === 'employees_pension_contributions'"
+        />
+        <col
+          style="width:260px"
+          *ngIf="col.field === 'employers_pension_contributions'"
+        />
+        <col
+          style="width:185px"
+          *ngIf="col.field === 'life_assurance_benefit'"
+        />
+        <col style="width:165px" *ngIf="col.field === 'benefit_adjustment'" />
+        <col style="width:115px" *ngIf="col.field === 'is_early_retiree'" />
+      </ng-container>
+    </colgroup>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <span class="mde-col-header">{{ col.header }}</span>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-index="rowIndex"
+  >
+    <tr class="mde-table-data-tr-height">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.field === 'delete'">
+          <em
+            (click)="deleteMemberDataRow(rowData)"
+            class="fa fa-trash mde-delete-member"
+          ></em>
+        </td>
+        <td *ngIf="col.field === 'errors'">
+          <span
+            (mouseenter)="showErrorMsg($event, errorNotifications, rowData)"
+            [innerHTML]="getConsolidatedErrors(rowData)"
+          ></span>
+        </td>
+        <td *ngIf="col.field === 'severity'">
+          <em
+            [ngClass]="getRowSeverity(rowData)"
+            (mouseenter)="
+              showSeverityMsg($event, severityNotifications, rowData)
+            "
+            (mouseleave)="hideSeverityPopup(severityNotifications)"
+          ></em>
+        </td>
+        <td *ngIf="col.field === 'include'">
+          <p-checkbox
+            [(ngModel)]="rowData.include"
+            (onChange)="selectMemberRow($event, rowData)"
+            [binary]="true"
+          ></p-checkbox>
+        </td>
+        <td *ngIf="col.field === 'row_number'">
+          {{ rowData[col.field] }}
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          class="mde-table-data-td"
+          *ngIf="
+            col.field === 'work_postcode' ||
+            col.field === 'job_title' ||
+            col.field === 'first_name' ||
+            col.field === 'last_name' ||
+            col.field === 'initials' ||
+            col.field === 'employee_payroll_no'
+          "
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                (keyup)="onKey($event, rowData, col.field, index)"
+                [(ngModel)]="rowData.row_entry[col.field]"
+                [ngClass]="isValidData(col.field, rowData)"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          class="mde-table-data-td"
+          *ngIf="
+            col.field === 'scheme_earnings' ||
+            col.field === 'age' ||
+            col.field === 'group_income_protection_benefit' ||
+            col.field === 'employees_pension_contributions' ||
+            col.field === 'employers_pension_contributions' ||
+            col.field === 'life_assurance_benefit' ||
+            col.field === 'benefit_adjustment'
+          "
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                pKeyFilter="int"
+                type="text"
+                (keyup)="onKey($event, rowData, col.field, index)"
+                [(ngModel)]="rowData.row_entry[col.field]"
+                [ngClass]="isValidData(col.field, rowData)"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          *ngIf="col.field === 'category'"
+          class="mde-table-data-td"
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                appendTo="body"
+                [options]="categories"
+                (onChange)="onChange()"
+                [ngClass]="isValidData(col.field, rowData)"
+                [(ngModel)]="rowData.row_entry[col.field]"
+                [styleClass]="
+                  'mde-dd-container mde-dd-categories ' +
+                  isValidData(col.field, rowData)
+                "
+                [panelStyleClass]="
+                  'mde-dd-panel-container mde-dd-categories-panel'
+                "
+              ></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          *ngIf="col.field === 'gender'"
+          class="mde-table-data-td"
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                appendTo="body"
+                [options]="getSelectOptions(col.field, rowData)"
+                [(ngModel)]="rowData.row_entry[col.field]"
+                [styleClass]="
+                  'mde-dd-container mde-dd-gender ' +
+                  isValidData(col.field, rowData)
+                "
+                [panelStyleClass]="'mde-dd-panel-container mde-dd-gender-panel'"
+              ></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          *ngIf="
+            col.field === 'date_of_birth' &&
+            validateDate(rowData.row_entry[col.field])
+          "
+          class="mde-table-data-td"
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-calendar
+                appendTo="body"
+                dateFormat="dd/mm/yy"
+                [styleClass]="'mde-dt-container mde-dt-container-dob'"
+                [readonlyInput]="true"
+                [inputStyleClass]="'mde-dt-input-container'"
+                [(ngModel)]="rowData.row_entry[col.field]"
+              ></p-calendar>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          pEditableColumn
+          *ngIf="
+            col.field === 'date_of_birth' &&
+            !validateDate(rowData.row_entry[col.field])
+          "
+          class="mde-table-data-td"
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-calendar
+                appendTo="body"
+                dateFormat="dd/mm/yy"
+                (onSelect)="onDateSelect($event, rowData, col.field)"
+                [styleClass]="'mde-dt-container mde-dt-container-dob'"
+                [readonlyInput]="true"
+                [inputStyleClass]="'mde-dt-input-container'"
+              ></p-calendar>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td
+          [pEditableColumn]="rowData"
+          [pEditableColumnField]="col.field"
+          [pEditableColumnRowIndex]="index"
+          *ngIf="col.field === 'is_early_retiree'"
+          class="mde-table-data-td"
+        >
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown
+                appendTo="body"
+                [options]="getSelectOptions(col.field, rowData)"
+                [(ngModel)]="rowData.row_entry[col.field]"
+                [style]="{ width: '100%' }"
+                [styleClass]="'mde-dd-container mde-dd-early-retiree'"
+                [panelStyleClass]="
+                  'mde-dd-panel-container mde-dd-early-retiree-panel'
+                "
+              ></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <div
+                class="mde-cell-content-wrapper"
+                [ngClass]="{
+                  'error-border': hasValidationFieldError(col.field, rowData)
+                }"
+              >
+                {{ rowData.row_entry[col.field] }}
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-overlayPanel
+  #severityNotifications
+  [styleClass]="'mde-severity-notification-container'"
+>
+  <ng-template pTemplate>
+    <div class="mde-severity-text">
+      {{ severityMsg }}
+    </div>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel
+  #errorNotifications
+  [styleClass]="'mde-error-notification-container'"
+>
+  <ng-template pTemplate>
+    <ul class="mde-list-error-ul">
+      <li class="mde-list-error-li" *ngFor="let error of errorList">
+        <span class="mde-list-error-msg">{{ error.message }}</span>
+        <em
+          *ngIf="error.severity === 'ACTION'"
+          class="mde-list-error-icon fa fa-exclamation-circle red-exclamation"
+        ></em>
+        <em
+          *ngIf="error.severity === 'ACTION_WITH_TOLERANCE'"
+          class="mde-list-error-icon fa fa-exclamation-circle red-exclamation"
+        ></em>
+      </li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>
+
+<div class="mde-download-btn" (click)="exportExcel()">Download Data</div>
+
+<p-dialog
+  header="Warning"
+  [style]="{ width: '28em' }"
+  [styleClass]="'mde-det-row-msg-popup'"
+  [closable]="false"
+  [(visible)]="showDeleteDialog"
+>
+  <div class="mde-del-row-msg-wrapper">
+    <div class="mde-del-row-msg-content">
+      <div class="mde-del-row-msg-content-one">
+        Are you sure you want to delete this member's record?
+      </div>
+      <div class="mde-del-row-msg-content-two">
+        This action cannot be undone.
+      </div>
+    </div>
+
+    <div class="mde-del-row-buttons">
+      <p-button
+        label="Yes"
+        (onClick)="deleteConfirm()"
+        [styleClass]="'ui-lg-4 primary-btn mde-bt-det-row-yes'"
+      ></p-button>
+
+      <p-button
+        label="No"
+        (onClick)="deleteCancel()"
+        [styleClass]="'ui-lg-4 primary-btn mde-bt-det-row-no'"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>
+
+<div (click)="checkDuplicate('age')">
+  Check duplicate
+</div>

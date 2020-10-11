@@ -1,0 +1,99 @@
+.mde-dt-input-container {
+  width: 100%;
+}
+
+.mde-dt-container {
+  width: 100%;
+}
+
+.yellow-exclamation {
+  color: yellow;
+}
+
+.red-exclamation {
+  color: red;
+}
+
+.green-tick {
+  color: green;
+}
+
+.mde-list-error-ul {
+  padding: 0;
+  margin: 0;
+}
+.mde-list-error-li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mde-list-error-msg {
+  margin-right: 0.5em;
+}
+
+.mde-table-data-tr-height {
+  height: 41px;
+}
+
+.error-border {
+  background-color: #ffc8c8;
+  height: 40px;
+  border: 1px solid red;
+}
+
+.mde-cell-content-wrapper {
+  padding: 0.571em 0.857em;
+}
+
+body .ui-table .ui-table-tbody > tr > td.mde-table-data-td {
+  padding: 0;
+  margin: 0;
+}
+
+.mde-dd-gender {
+  width: 140px;
+  min-width: 140px;
+}
+.mde-dd-early-retiree {
+  width: 115px;
+  min-width: 115px;
+}
+.mde-dd-categories {
+  width: 160px;
+  min-width: 160px;
+}
+
+.primary-btn.ui-button {
+  background-color: gray;
+  color: black;
+  width: auto;
+  padding: 0;
+  margin: 0 0.5em 0 0;
+}
+
+body .error-border-dd.ui-dropdown {
+  border: 1px solid red;
+}
+
+body .ui-dropdown:not(.ui-state-disabled).ui-state-focus.error-border {
+  outline: 0 none;
+  outline-offset: 0;
+  -webkit-box-shadow: 0 0 0 0.2em #ffc8c8;
+  -moz-box-shadow: 0 0 0 0.2em #ffc8c8;
+  box-shadow: 0 0 0 0.2em #ffc8c8;
+  border-color: red;
+}
+
+body .ui-inputtext:enabled:focus:not(.ui-state-error).error-border {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2em #ffc8c8;
+  border-color: red;
+}
+
+.mde-download-btn {
+  width: 300px;
+  background-color: azure;
+}
